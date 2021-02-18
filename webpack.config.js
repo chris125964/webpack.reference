@@ -1,5 +1,5 @@
 const path = require('path');
- 
+
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
   module: {
@@ -7,12 +7,12 @@ module.exports = {
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
-      }
-    ]
+        use: ['babel-loader', 'eslint-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js'],
   },
   output: {
     path: path.resolve(__dirname, './dist'),
