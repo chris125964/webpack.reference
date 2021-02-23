@@ -5,6 +5,7 @@ import {
   Link,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './style.css';
 
 interface AppProps {
   title: string;
@@ -15,7 +16,7 @@ const Home = () => <div>Home</div>;
 const About = () => <div>About</div>;
 
 const App = ({ title }: AppProps) => (
-  <div>
+  <div className={title}>
     {title}
     <p />
     <Router>
