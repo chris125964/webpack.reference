@@ -6,14 +6,13 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
+import About from './About';
 
 interface AppProps {
   title: string;
 }
 
 const Home = () => <div>Home</div>;
-
-const About = () => <div>About</div>;
 
 const App = ({ title }: AppProps) => (
   <div className={title}>

@@ -1,0 +1,5 @@
+{
+  "name": "Typedoc documentation",
+  "entryPoints": ["src/model/person.ts"],
+  "out": "./doc"
+}
