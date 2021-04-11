@@ -4,13 +4,19 @@
   "description": "",
   "main": "main.js",
   "homepage": "./",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chris125964/webpack.reference.git"
+  },
   "scripts": {
     "start": "webpack serve --config build-utils/webpack.config.js --env env=dev",
     "build": "webpack --config build-utils/webpack.config.js --env env=prod",
     "build:analyze": "npm run build -- --env addon=bundleanalyze",
     "test": "echo \"Error: no test specified\" && exit 1",
     "doc": "typedoc --options typedoc.json",
-    "el": "electron ."
+    "el": "electron .",
+    "build2": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
   },
   "keywords": [],
   "author": "",
