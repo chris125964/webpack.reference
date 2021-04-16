@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { autoUpdater} = require('electron-updater')
+const { autoUpdater } = require('electron-updater')
 
 let mainWindow;
 
@@ -9,6 +9,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      preload: __dirname + '/preload.js'
     },
   });
   // mainWindow.loadFile('index.html');
@@ -40,6 +41,7 @@ app.on('activate', function () {
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
+// ------------------------------------------------------------------
 
 autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
