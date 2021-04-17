@@ -13,17 +13,22 @@ function createWindow() {
     },
   });
   // mainWindow.loadFile('index.html');
-  mainWindow.loadURL('http://localhost:8080')
+  mainWindow.loadURL('http://localhost:8080');
+  mainWindow.openDevTools();
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
   mainWindow.once('ready-to-show', () => {
+    console.log('mainWindow.once.ready-to-show');
     autoUpdater.checkForUpdatesAndNotify();
   });
 }
 
 app.on('ready', () => {
+  console.log('app.on(ready)');
   createWindow();
+  // mainWindow.webContents.send('update_available');
 });
 
 app.on('window-all-closed', function () {
@@ -33,6 +38,7 @@ app.on('window-all-closed', function () {
 });
 
 app.on('activate', function () {
+  console.log('app.on(ctivate)');
   if (mainWindow === null) {
     createWindow();
   }
@@ -44,12 +50,15 @@ ipcMain.on('app_version', (event) => {
 // ------------------------------------------------------------------
 
 autoUpdater.on('update-available', () => {
+  console.log('autoUpdater.update-available');
   mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
+  console.log('autoUpdater.update-downloaded');
   mainWindow.webContents.send('update_downloaded');
 });
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
+
