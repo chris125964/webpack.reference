@@ -17,16 +17,17 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.css$/i,
+        test: /\.(css)$/i,
         exclude: /node_modules/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
+          'css-loader'
+          // {
+          //   loader: 'css-loader',
+          //   options: {
+          //     modules: true,
+          //   },
+          // },
         ],
       },
     ],
@@ -37,7 +38,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Hello Webpack bundled JavaScript Project',
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
   ],

@@ -2,11 +2,22 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater')
 
 let mainWindow;
+let padding = 20;
+let gap = 12;
+let tile = 150;
+let rows = 5;
+let columns = 6;
+
+let width = 2 * padding + (columns - 1) * gap + columns * tile;
+let height = 2 * padding + (rows - 1) * gap + rows * tile + 57;
+
+console.log(`width: ${width} - height: ${height}`);
+
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width,
+    height,
     webPreferences: {
       nodeIntegration: true,
       preload: __dirname + '/preload.js'

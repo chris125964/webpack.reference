@@ -1,39 +1,45 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import './style.css';
+
+import {
+  Link,
+  Route,
+  BrowserRouter as Router,
+} from 'react-router-dom';
+
 import About from './About';
+import { MemGrid } from './MemGrid';
+import { Memory } from './Memory';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 interface AppProps {
-  title: string;
 }
 
 const Home = () => <div>Home</div>;
 
-const App = ({ title }: AppProps) => (
-  <div className={title}>
-    {title}
-    <p />
+const App = ({ }: AppProps) => (
+  <div >
+    <MemGrid />
+    {/* <p />
     <Router>
-      <li>
+      <button>
         <Link to="/">Home</Link>
-      </li>
-      <li>
+      </button>
+      <button>
         <Link to="/about">About</Link>
-      </li>
+      </button>
+      <button>
+        <Link to="/memory">Memory</Link>
+      </button>
 
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-    </Router>
+      <Route path="/memory" component={Memory} />
+    </Router> */}
   </div>
 );
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
 };
 
 export default App;

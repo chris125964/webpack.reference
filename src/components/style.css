@@ -1,3 +1,51 @@
 .title {
   background-color: lightgray;
 }
+
+
+.butt {
+  background-color:blueviolet;
+}
+
+.masonry {
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 200px auto 200px;
+}
+
+.flexbox {
+  display: flexbox;
+  flex-flow: row wrap;
+}
+
+.flexbox p {
+  width: 100px;
+  height: 100px;
+  background-color: blueviolet;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  }
+  
+.button {
+  width: 100%;
+  height: 150px;
+}
+
+.buttonRed {
+  width: 100%;
+  height: 150px;
+  background-color: lightgray;
+}
+  
+.buttonGreen {
+  width: 100%;
+  height: 150px;
+  background-color: green;
+}
+  
