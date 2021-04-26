@@ -1,23 +1,44 @@
 import React, { useState } from 'react';
 
+import { MemoryState } from '../enums/MemoryState';
+import { TileContent } from './TileContent';
+
+const closed = "buttonClosed"
+const open = "buttonOpen"
+
 interface MemTileProps {
+    loop: number;
     nr: number;
     classStyle: string;
+    content: string;
+    onChange: () => void;
 }
 
-export const MemTile = ({ nr, classStyle }: MemTileProps) => {
+export const MemTile = ({
+    loop, nr, classStyle, content, onChange }: MemTileProps) => {
 
-    const [buttonStyle, setButtonStyle] = useState<string>("buttonRed")
+    const [buttonStyle, setButtonStyle] = useState<string>(closed)
 
 
     const changeColor = (nr: number) => () => {
-        console.log(`changeColor`);
-        if (buttonStyle === "buttonRed") {
-            setButtonStyle("buttonGreen");
+        if (buttonStyle === closed) {
+            setButtonStyle(open);
         } else {
-            setButtonStyle("buttonRed")
+            setButtonStyle(closed)
+        }
+        onChange()
+    }
+
+    // console.log(`MemTile(loop: ${loop}, nr: ${nr}): ${classStyle}`);
+    const renderButton = (style: string) => {
+        const testid = `button.${loop}`
+        if (style === closed) {
+            return <button key={nr} data-testid={testid} className={style} onClick={changeColor(nr)}>{content}</button>
+        } else {
+            return <button key={nr} data-testid={testid} className={style} onClick={changeColor(nr)}><TileContent nr={nr}></TileContent></button>
         }
     }
 
-    return <button key={nr} className={buttonStyle} onClick={changeColor(nr)}>{nr}</button>
+
+    return renderButton(buttonStyle)
 };

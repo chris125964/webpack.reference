@@ -1,25 +1,33 @@
 import './style.css';
 
-import {
-  Link,
-  Route,
-  BrowserRouter as Router,
-} from 'react-router-dom';
-
-import About from './About';
+// import About from './About';
+import { Content } from '../logic/content';
 import { MemGrid } from './MemGrid';
-import { Memory } from './Memory';
-import PropTypes from 'prop-types';
+// import { Memory } from './Memory';
+// import PropTypes from 'prop-types';
 import React from 'react';
+
+// import {
+//   Link,
+//   Route,
+//   BrowserRouter as Router,
+// } from 'react-router-dom';
+
 
 interface AppProps {
 }
 
 const Home = () => <div>Home</div>;
 
-const App = ({ }: AppProps) => (
-  <div >
-    <MemGrid />
+const App = ({ }: AppProps) => {
+
+  console.log(`created new content`);
+  const content = new Content(15);
+  content.createTileContent();
+  // content.showContent();
+
+  return (<div>
+    <MemGrid content={content} />
     {/* <p />
     <Router>
       <button>
@@ -36,8 +44,8 @@ const App = ({ }: AppProps) => (
       <Route path="/about" component={About} />
       <Route path="/memory" component={Memory} />
     </Router> */}
-  </div>
-);
+  </div>)
+};
 
 App.propTypes = {
 };

@@ -1,5 +1,7 @@
 {
   "name": "Typedoc documentation",
-  "entryPoints": ["src/model/person.ts"],
+  "entryPoints": [
+    "src/logic/content.ts"
+  ],
   "out": "./doc"
 }

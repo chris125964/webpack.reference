@@ -37,13 +37,13 @@
   height: 150px;
 }
 
-.buttonRed {
+.buttonClosed {
   width: 100%;
   height: 150px;
   background-color: lightgray;
 }
   
-.buttonGreen {
+.buttonOpen {
   width: 100%;
   height: 150px;
   background-color: green;
