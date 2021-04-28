@@ -13,11 +13,25 @@ interface TGridProps { content: Content }
 export const MemGrid = ({ content }: TGridProps) => {
 
     const [currentState, setCurrentState] = useState<MemoryState>(MemoryState.NO_TILE_OPEN);
+    const [memIndex, setMemIndex] = useState<number>(-1);
+    const [memResult, setMemResult] = useState<number>(-1);
 
-    const changeState = () => {
+    const changeState = (index: number, tileResult: number) => {
         const newState = change(currentState, MemoryEvent.TILE_1_OPEN);
-        console.log(`change state: ${currentState} -> ${newState}`);
-        setCurrentState(newState)
+        console.log(`change state[${index}] = ${tileResult}: ${currentState}` +
+            ` -> ${newState} -- bisher: [${memIndex}] = ${memResult}`);
+        if (tileResult === memResult) {
+            if (index === memIndex) {
+                console.log(`Undo`);
+            } else {
+                console.log(`Paar gefunden`);
+            }
+        } else {
+            console.log(`Kein Paar`);
+        }
+        setCurrentState(newState);
+        setMemIndex(index);
+        setMemResult(tileResult);
     }
 
     const [buttonStyle, setButtonStyle] = useState<string>("buttonClosed")

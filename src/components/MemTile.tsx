@@ -11,7 +11,7 @@ interface MemTileProps {
     nr: number;
     classStyle: string;
     content: string;
-    onChange: () => void;
+    onChange: (index: number, tileResult: number) => void;
 }
 
 export const MemTile = ({
@@ -26,7 +26,7 @@ export const MemTile = ({
         } else {
             setButtonStyle(closed)
         }
-        onChange()
+        onChange(loop, nr)
     }
 
     // console.log(`MemTile(loop: ${loop}, nr: ${nr}): ${classStyle}`);
