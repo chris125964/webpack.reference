@@ -13,22 +13,13 @@ export const change = (
             break;
         case MemoryState.ONE_TILE_OPEN:
             newState = changeStateOneTileOpen(event);
-            // if (isOpen) {
-            // undo
-            // newState = MemoryState.NO_TILE_OPEN;
-            // } else {
-            // newState = MemoryState.NO_TILE_OPEN;
-            // }
-            //   if (event === MemoryEvent.TILE_2_TRUE) {
-            //     newState = MemoryState.NO_TILE_OPEN;
-            //   } else if (event === MemoryEvent.TILE_2_FALSE) {
-            //     newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
-            //   } else if (event === MemoryEvent.TILE_UNDO) {
-            //     newState = MemoryState.NO_TILE_OPEN;
-            // }
             break;
-        // case MemoryState.TWO_TILES_OPEN_NOT_FIT:
-        //     break;
+        case MemoryState.TWO_TILES_OPEN_NOT_FIT:
+            newState = MemoryState.ONE_TILE_OPEN;
+            break;
+        case MemoryState.TWO_TILES_OPEN_AND_FIT:
+            newState = MemoryState.ONE_TILE_OPEN;
+            break;
         default:
             console.log(`current state ${currentState} is not yet treated`);
             break;
@@ -49,7 +40,10 @@ const changeStateOneTileOpen = (event: MemoryEvent) => {
         if (event === MemoryEvent.TILE_2_TRUE) {
             //     newState = MemoryState.TWO_TILES_OPEN_AND_FIT;
             // } else {
-            newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
+            newState = MemoryState.TWO_TILES_OPEN_AND_FIT;
+        } else if (event === MemoryEvent.TILE_2_FALSE) {
+            // 2 tiles open but do not fit
+            newState = MemoryState.TWO_TILES_OPEN_NOT_FIT
         }
     }
     return newState;

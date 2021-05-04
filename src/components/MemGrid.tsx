@@ -1,9 +1,13 @@
 import './style.css'
 
+import * as actionTypes from '../redux/sample/actionTypes';
+
 import { Content, MemContent } from '../logic/content';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { MemTile } from './MemTile';
+import { MemoryAction } from '../redux/sample/type';
 import { MemoryEvent } from '../enums/MemoryEvent';
 import { MemoryState } from '../enums/MemoryState';
 import { change } from '../logic/statemachine';
@@ -38,8 +42,30 @@ export const MemGrid = ({ content }: TGridProps) => {
 
     const renderTile = (index: number, content: MemContent, classX: string) => {
         return <MemTile loop={index} key={content.index * 100 + content.nr} nr={content.nr}
-            classStyle={classX} content="hello" onChange={changeState}
+            classStyle={classX} content={content.nr.toString()} onChange={changeState} click={clickTile}
         />
+    }
+
+    // interface RootState {
+    //     userFirstName: string;
+    //     userLastName: string;
+    // }
+
+    // const firstName = useSelector((state: RootState) => {
+    //     return state.userFirstName
+    // })
+    // const lastName = useSelector((state: RootState) => {
+    //     return state.userLastName
+    // })
+
+    const dispatch = useDispatch();
+
+    const clickTile = (index: number, nr: number) => {
+        const action: MemoryAction = {
+            type: actionTypes.SET_TILE,
+            mem: { index, nr, status: MemoryState.UNDEFINED }
+        }
+        dispatch({ type: "SET_TILE", mem: { index, nr } })
     }
 
 
