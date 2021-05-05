@@ -1,11 +1,15 @@
 import './style.css';
 
-// import About from './About';
 import { Content } from '../logic/content';
 import { MemGrid } from './MemGrid';
+import React from 'react';
+
+// import About from './About';
+
+
 // import { Memory } from './Memory';
 // import PropTypes from 'prop-types';
-import React from 'react';
+
 
 // import {
 //   Link,
@@ -24,7 +28,7 @@ const App = ({ }: AppProps) => {
   console.log(`created new content`);
   const content = new Content(15);
   content.createTileContent();
-  // content.showContent();
+  content.showContent();
 
   return (<div>
     <MemGrid content={content} />

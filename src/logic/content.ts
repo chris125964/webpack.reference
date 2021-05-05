@@ -9,7 +9,7 @@ export class Content {
     private singleContent: MemContent[];
 
     constructor(size: number) {
-        this.size = size * 2;
+        this.size = size;
         this.singleContent = new Array<MemContent>();
     }
 
@@ -53,7 +53,7 @@ export class Content {
     };
 
     showContent = () => {
-        for (let loop = 0; loop < this.size; loop += 1) {
+        for (let loop = 0; loop < this.singleContent.length; loop += 1) {
             console.log(`${loop}: ${JSON.stringify(this.singleContent[loop], null)}`);
 
         }

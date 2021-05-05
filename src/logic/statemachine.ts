@@ -12,7 +12,22 @@ export const change = (
             newState = MemoryState.ONE_TILE_OPEN;
             break;
         case MemoryState.ONE_TILE_OPEN:
-            newState = changeStateOneTileOpen(event);
+            // newState = changeStateOneTileOpen(event);
+            switch (event) {
+                case MemoryEvent.TILE_UNDO:
+                    newState = MemoryState.NO_TILE_OPEN;
+                    break;
+                case MemoryEvent.TILE_2_FALSE:
+                    newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
+                    break;
+                case MemoryEvent.TILE_2_TRUE:
+                    newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
+                    break;
+                default:
+                    console.log(`current event ${event} is not yet treated`);
+                    newState = MemoryState.ERROR;
+                    break
+            }
             break;
         case MemoryState.TWO_TILES_OPEN_NOT_FIT:
             newState = MemoryState.ONE_TILE_OPEN;
@@ -22,6 +37,7 @@ export const change = (
             break;
         default:
             console.log(`current state ${currentState} is not yet treated`);
+            newState = MemoryState.ERROR;
             break;
     }
     // console.log(
@@ -32,7 +48,7 @@ export const change = (
 };
 
 const changeStateOneTileOpen = (event: MemoryEvent) => {
-    let newState = MemoryState.UNDEFINED;
+    let newState = MemoryState.NO_TILE_OPEN;
     if (event === MemoryEvent.TILE_UNDO) {
         // undo
         newState = MemoryState.NO_TILE_OPEN;

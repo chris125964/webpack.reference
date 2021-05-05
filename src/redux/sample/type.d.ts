@@ -10,3 +10,6 @@ type MemoryAction = {
     type: string,
     mem: IMem
 }
+
+
+type DispatchType = (args: MemoryAction) => MemoryAction

@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface TileContentProps {
-    nr: number
+    nr: string
 }
 
 export const TileContent = ({ nr }: TileContentProps) => {

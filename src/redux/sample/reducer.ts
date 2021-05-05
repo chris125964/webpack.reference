@@ -1,12 +1,35 @@
 import { MemoryAction } from "./type";
 import { MemoryEvent } from "../../enums/MemoryEvent";
 import { MemoryState } from "../../enums/MemoryState";
+import { TileState } from "../../enums/TileState";
 import { change } from "../../logic/statemachine";
+
+let iniTiles = Array(30).fill(TileState.CLOSED);
+
+
+export interface RootState {
+    open1Index: number;
+    open1Vaue: number;
+    open2Index: number;
+    open2Value: number;
+    status: MemoryState;
+    tiles: TileState[];
+}
 
 let initialState = {
     open1Index: -1,
     open1Value: -1,
-    status: MemoryState.NO_TILE_OPEN
+    open2Index: -1,
+    open2Value: -1,
+    status: MemoryState.NO_TILE_OPEN,
+    tiles: iniTiles
+}
+
+const toggleTile = (tiles: TileState[], index: number) => {
+    const copyTiles = [...tiles];
+    let tile = copyTiles[index];
+    copyTiles[index] = tile === TileState.CLOSED ? TileState.OPEN : TileState.CLOSED;
+    return copyTiles;
 }
 
 export default function reducer(currentState = initialState, action: MemoryAction) {
@@ -26,6 +49,7 @@ export default function reducer(currentState = initialState, action: MemoryActio
                         // tiles do match -> next tile
 
                     } else {
+                        // one tile open
                         if (action.mem.index === currentState.open1Index) {
                             // Undo
                             console.log(`undo`);
@@ -36,7 +60,7 @@ export default function reducer(currentState = initialState, action: MemoryActio
                             currentEvent = MemoryEvent.TILE_2_TRUE;
 
                         } else {
-                            // tiles dont match
+                            // tiles do not match
                             console.log(`tiles don't match`);
                             currentEvent = MemoryEvent.TILE_2_FALSE;
                         }
@@ -47,7 +71,10 @@ export default function reducer(currentState = initialState, action: MemoryActio
             let newState = {
                 open1Index: action.mem.index,
                 open1Value: action.mem.nr,
-                status: newStatus
+                open2Index: newStatus === MemoryState.TWO_TILES_OPEN_NOT_FIT ? action.mem.index : currentState.open2Index,
+                open2Value: newStatus === MemoryState.TWO_TILES_OPEN_NOT_FIT ? action.mem.nr : currentState.open2Value,
+                status: newStatus,
+                tiles: toggleTile(currentState.tiles, action.mem.index)
             }
             return newState;
         default:
