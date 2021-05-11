@@ -21,7 +21,7 @@ export const change = (
                     newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
                     break;
                 case MemoryEvent.TILE_2_TRUE:
-                    newState = MemoryState.TWO_TILES_OPEN_NOT_FIT;
+                    newState = MemoryState.TWO_TILES_OPEN_AND_FIT;
                     break;
                 default:
                     console.log(`current event ${event} is not yet treated`);

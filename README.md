@@ -7,3 +7,6 @@ https://medium.com/@mendes.develop/introduction-on-react-redux-using-hooks-usese
 
 Erklärung ServiceWorker im Zusammenhang mit Progressive WebApps:
 https://entwickler.de/online/web/progressive-web-apps-tutorial-tipps-579830771.html
+
+
+https://www.digitalocean.com/community/tutorials/react-modal-component

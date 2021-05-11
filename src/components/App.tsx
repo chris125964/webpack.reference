@@ -28,7 +28,7 @@ const App = ({ }: AppProps) => {
   console.log(`created new content`);
   const content = new Content(15);
   content.createTileContent();
-  content.showContent();
+  // content.showContent();
 
   return (<div>
     <MemGrid content={content} />

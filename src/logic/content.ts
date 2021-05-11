@@ -4,6 +4,12 @@ export interface MemContent {
     index: number;
 }
 
+/**
+ * Inhalt der Memory-Tile
+ *
+ * @export
+ * @class Content
+ */
 export class Content {
     private size: number;
     private singleContent: MemContent[];
