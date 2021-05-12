@@ -11,3 +11,11 @@ export function clickTile(index: number, nr: number, dispatch: (action: MemoryAc
 
     dispatch(action)
 }
+
+export function finishGame(dispatch: (action: MemoryAction) => void) {
+    const action: MemoryAction = {
+        type: actionTypes.FINISH_GAME,
+        mem: { index: 1, nr: 1, status: MemoryState.ERROR }
+    }
+    dispatch(action)
+}

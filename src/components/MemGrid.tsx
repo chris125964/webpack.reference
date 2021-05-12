@@ -5,6 +5,7 @@ import * as actionTypes from '../redux/sample/actionTypes';
 
 import { Content, MemContent } from '../logic/content';
 import React, { useState } from 'react';
+import { clickTile, finishGame } from '../redux/sample/actionCreators';
 
 import { MemInfo } from './MemInfo';
 import { MemTile } from './MemTile';
@@ -14,7 +15,6 @@ import { MemoryState } from '../enums/MemoryState';
 import { Modal } from './Modal';
 import { RootState } from '../redux/sample/reducer';
 import { change } from '../logic/statemachine';
-import { clickTile } from '../redux/sample/actionCreators';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
 
@@ -26,6 +26,7 @@ export const MemGrid = ({ content }: TGridProps) => {
     const dispatch = useDispatch();
 
     const finished = useSelector((state: RootState) => state.finished);
+    const newGame = useSelector((state: RootState) => state.newGame);
     // if (finished) {
     //     setShowModal(true);
     // }
@@ -48,11 +49,14 @@ export const MemGrid = ({ content }: TGridProps) => {
 
     // const openModal = () => setShowModal(true);
 
-    const closeModal = () => setShowModal(false);
+    const closeModal = () => {
+        setShowModal(false);
+        finishGame(dispatch);
+    }
 
     return (
         <div>
-            <Modal show={finished} onClose={closeModal}></Modal>
+            <Modal show={finished && !newGame} onClose={closeModal}></Modal>
             {/* <button onClick={openModal}>Modal</button> */}
             <MemInfo />
             <div className="parent">

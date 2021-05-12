@@ -1,3 +1,5 @@
+import * as actionTypes from './actionTypes';
+
 import { MemoryAction } from "./type";
 import { MemoryEvent } from "../../enums/MemoryEvent";
 import { MemoryState } from "../../enums/MemoryState";
@@ -16,6 +18,7 @@ export interface RootState {
     nrMoves: number;
     nrPairs: number;
     finished: boolean;
+    newGame: boolean;
 }
 
 let initialState = {
@@ -25,7 +28,8 @@ let initialState = {
     tiles: iniTiles,
     nrMoves: 0,
     nrPairs: 0,
-    finished: false
+    finished: false,
+    newGame: false
 }
 
 const toggleTile = (tiles: TileState[], index: number, solved = false) => {
@@ -42,7 +46,7 @@ const toggleTile = (tiles: TileState[], index: number, solved = false) => {
 export default function reducer(currentState = initialState, action: MemoryAction) {
 
     switch (action.type) {
-        case "SET_TILE":
+        case actionTypes.SET_TILE:
             let currentStatus = currentState.status;
             let currentEvent = MemoryEvent.UNDEFINED;
             if (currentStatus === MemoryState.NO_TILE_OPEN) {
@@ -115,9 +119,15 @@ export default function reducer(currentState = initialState, action: MemoryActio
                 tiles,
                 nrMoves: currentState.nrMoves + 1,
                 nrPairs,
-                finished: nrPairs === 15
+                finished: nrPairs === 15,
+                newGame: false
             }
             return newState;
+        case actionTypes.FINISH_GAME:
+            let newState2 = { ...currentState }
+            newState2.newGame = true;
+            return newState2;
+            break;
         default:
             return currentState
     }
