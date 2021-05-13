@@ -13,9 +13,11 @@ export const Modal = ({ show, onClose }: ModalProps) => {
   };
 
   return (
-    <div className={showHideClassName}>
+    <div data-testid="modal.xxx" className={showHideClassName}>
       <h1>This is the modal</h1>
-      <button onClick={onCloseWindow}>Close</button>
+      <button data-testid="modal.close-button" onClick={onCloseWindow}>
+        Close
+      </button>
     </div>
   );
 };
