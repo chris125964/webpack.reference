@@ -6,10 +6,8 @@ import React from 'react';
 
 // import About from './About';
 
-
 // import { Memory } from './Memory';
 // import PropTypes from 'prop-types';
-
 
 // import {
 //   Link,
@@ -17,22 +15,20 @@ import React from 'react';
 //   BrowserRouter as Router,
 // } from 'react-router-dom';
 
-
-interface AppProps {
-}
+interface AppProps {}
 
 const Home = () => <div>Home</div>;
 
-const App = ({ }: AppProps) => {
-
+const App = ({}: AppProps) => {
   console.log(`created new content`);
   const content = new Content(15);
   content.createTileContent();
   // content.showContent();
 
-  return (<div>
-    <MemGrid content={content} />
-    {/* <p />
+  return (
+    <div>
+      <MemGrid content={content} />
+      {/* <p />
     <Router>
       <button>
         <Link to="/">Home</Link>
@@ -48,10 +44,10 @@ const App = ({ }: AppProps) => {
       <Route path="/about" component={About} />
       <Route path="/memory" component={Memory} />
     </Router> */}
-  </div>)
+    </div>
+  );
 };
 
-App.propTypes = {
-};
+App.propTypes = {};
 
 export default App;

@@ -1,5 +1,5 @@
-import './style.css'
-import './modal.css'
+import './style.css';
+import './modal.css';
 
 import * as actionTypes from '../redux/sample/actionTypes';
 
@@ -16,52 +16,57 @@ import { Modal } from './Modal';
 import { RootState } from '../redux/sample/reducer';
 import { change } from '../logic/statemachine';
 import { useDispatch } from 'react-redux';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-interface TGridProps { content: Content }
+interface TGridProps {
+  content: Content;
+}
 
 export const MemGrid = ({ content }: TGridProps) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const dispatch = useDispatch();
+  const finished = useSelector((state: RootState) => state.finished);
+  const newGame = useSelector((state: RootState) => state.newGame);
+  // if (finished) {
+  //     setShowModal(true);
+  // }
 
-    const finished = useSelector((state: RootState) => state.finished);
-    const newGame = useSelector((state: RootState) => state.newGame);
-    // if (finished) {
-    //     setShowModal(true);
-    // }
-
-
-    const renderTile = (index: number, content: MemContent) => {
-        return <MemTile loop={index} key={content.index * 100 + content.nr} nr={content.nr} index={content.index}
-            content={content.nr.toString()}
-            click={clickTile} dispatch={dispatch}
-        />
-    }
-
-    const renderTiles = () => {
-        let arr = [];
-        for (let loop = 0; loop < 30; loop += 1) {
-            arr.push(content.getTile(loop));
-        }
-        return arr.map((content, index) => renderTile(index, content))
-    }
-
-    // const openModal = () => setShowModal(true);
-
-    const closeModal = () => {
-        setShowModal(false);
-        finishGame(dispatch);
-    }
-
+  const renderTile = (index: number, content: MemContent) => {
     return (
-        <div>
-            <Modal show={finished && !newGame} onClose={closeModal}></Modal>
-            {/* <button onClick={openModal}>Modal</button> */}
-            <MemInfo />
-            <div className="parent">
-                {renderTiles()}
-            </div>
-        </div>
+      <MemTile
+        loop={index}
+        key={content.index * 100 + content.nr}
+        nr={content.nr}
+        index={content.index}
+        content={content.nr.toString()}
+        click={clickTile}
+        dispatch={dispatch}
+      />
     );
+  };
+
+  const renderTiles = () => {
+    let arr = [];
+    for (let loop = 0; loop < 30; loop += 1) {
+      arr.push(content.getTile(loop));
+    }
+    return arr.map((content, index) => renderTile(index, content));
+  };
+
+  // const openModal = () => setShowModal(true);
+
+  const closeModal = () => {
+    setShowModal(false);
+    finishGame(dispatch);
+  };
+
+  return (
+    <div>
+      <Modal show={finished && !newGame} onClose={closeModal}></Modal>
+      {/* <button onClick={openModal}>Modal</button> */}
+      <MemInfo />
+      <div className="parent">{renderTiles()}</div>
+    </div>
+  );
 };

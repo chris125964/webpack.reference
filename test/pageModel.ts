@@ -1,12 +1,12 @@
-import { Selector } from "testcafe";
+import { Selector } from 'testcafe';
 
 export class MemoryPM {
-  constructor() {
-
-  }
+  constructor() {}
 
   async clickTile(t: TestController, index: number, first = true) {
-    const sel = Selector(`[data-testid="button.${index}.${first ? "1" : "2"}"]`)
+    const sel = Selector(
+      `[data-testid="button.${index}.${first ? '1' : '2'}"]`,
+    );
     await t.click(sel);
   }
 }

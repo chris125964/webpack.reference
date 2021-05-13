@@ -1,15 +1,14 @@
-import { MemoryState } from "../../enums/MemoryState";
+import { MemoryState } from '../../enums/MemoryState';
 
 interface IMem {
-    index: number,
-    nr: number,
-    status: MemoryState
+  index: number;
+  nr: number;
+  status: MemoryState;
 }
 
 type MemoryAction = {
-    type: string,
-    mem: IMem
-}
+  type: string;
+  mem: IMem;
+};
 
-
-type DispatchType = (args: MemoryAction) => MemoryAction
+type DispatchType = (args: MemoryAction) => MemoryAction;

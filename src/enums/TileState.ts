@@ -1,7 +1,5 @@
-
-
 export enum TileState {
-    OPEN = 'O',
-    CLOSED = 'C',
-    SOLVED = 'S'
+  OPEN = 'O',
+  CLOSED = 'C',
+  SOLVED = 'S',
 }
