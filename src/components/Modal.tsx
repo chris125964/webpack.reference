@@ -14,7 +14,7 @@ export const Modal = ({ show, onClose }: ModalProps) => {
 
   return (
     <div data-testid="modal.xxx" className={showHideClassName}>
-      <h1>This is the modal</h1>
+      <img className="image" src="./IMG_2271.JPG" />
       <button data-testid="modal.close-button" onClick={onCloseWindow}>
         Close
       </button>

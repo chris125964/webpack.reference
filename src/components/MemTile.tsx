@@ -41,13 +41,11 @@ export const MemTile = ({
 
   const tt = useSelector((state: RootState) => state.tiles);
 
-  const changeColor = (
-    loop: number,
-    nr: number,
-    dispatch: (action: MemoryAction) => void,
-  ) => () => {
-    click(loop, nr, dispatch);
-  };
+  const changeColor =
+    (loop: number, nr: number, dispatch: (action: MemoryAction) => void) =>
+    () => {
+      click(loop, nr, dispatch);
+    };
 
   // console.log(`MemTile(loop: ${loop}, nr: ${nr}): ${classStyle}`);
   const renderButton = (tileState: TileState) => {
@@ -80,11 +78,7 @@ export const MemTile = ({
       );
     } else {
       style = solved;
-      butt = (
-        <button key={nr} data-testid={testid} className={style}>
-          solved
-        </button>
-      );
+      butt = <button key={nr} data-testid={testid} className={style}></button>;
     }
     return butt;
   };

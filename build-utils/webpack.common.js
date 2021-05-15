@@ -18,6 +18,10 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader'],
       },
       {
+        test: /\.(jpg|png)$/,
+        type: 'assets'
+      },
+      {
         test: /\.(css)$/i,
         exclude: /node_modules/,
         use: [
@@ -46,7 +50,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, '..', './dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
   },
 };
