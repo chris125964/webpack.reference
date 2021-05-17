@@ -20,9 +20,10 @@ import { useSelector } from 'react-redux';
 
 interface TGridProps {
   content: Content;
+  onNewGame: () => void;
 }
 
-export const MemGrid = ({ content }: TGridProps) => {
+export const MemGrid = ({ content, onNewGame }: TGridProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -65,7 +66,7 @@ export const MemGrid = ({ content }: TGridProps) => {
     <div>
       <Modal show={finished && !newGame} onClose={closeModal}></Modal>
       {/* <button onClick={openModal}>Modal</button> */}
-      <MemInfo />
+      <MemInfo onNewGame={onNewGame} />
       <div className="parent">{renderTiles()}</div>
     </div>
   );

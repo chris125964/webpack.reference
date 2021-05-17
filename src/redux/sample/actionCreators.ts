@@ -23,3 +23,11 @@ export function finishGame(dispatch: (action: MemoryAction) => void) {
   };
   dispatch(action);
 }
+
+export function newGame(dispatch: (action: MemoryAction) => void) {
+  const action: MemoryAction = {
+    type: actionTypes.NEW_GAME,
+    mem: { index: 1, nr: 1, status: MemoryState.ERROR },
+  };
+  dispatch(action);
+}

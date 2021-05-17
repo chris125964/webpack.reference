@@ -2,7 +2,9 @@ import './style.css';
 
 import { Content } from '../logic/content';
 import { MemGrid } from './MemGrid';
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/sample/reducer';
 
 // import About from './About';
 
@@ -20,14 +22,28 @@ interface AppProps {}
 const Home = () => <div>Home</div>;
 
 const App = ({}: AppProps) => {
-  console.log(`created new content`);
-  const content = new Content(15);
-  content.createTileContent();
+  // const newGame = useSelector((state: RootState) => state.newGame);
+  const [nrGame, setNrGame] = useState<number>(0);
+  let content;
+
+  const createContent = () => {
+    let content = new Content(15);
+    content.createTileContent();
+    return content;
+  };
+
+  content = createContent();
+
+  const onNewGame = () => {
+    setNrGame(nrGame + 1);
+  };
+
+  // onNewGame();
   // content.showContent();
 
   return (
     <div>
-      <MemGrid content={content} />
+      <MemGrid content={content} onNewGame={onNewGame} />
       {/* <p />
     <Router>
       <button>

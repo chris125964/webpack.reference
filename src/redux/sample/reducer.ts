@@ -68,7 +68,6 @@ export default function reducer(
               currentEvent = MemoryEvent.TILE_UNDO;
             } else if (action.mem.nr === currentState.tile1.value) {
               // found a pair
-              console.log(`found a pair`);
               currentEvent = MemoryEvent.TILE_2_TRUE;
             } else {
               // tiles do not match
@@ -130,6 +129,15 @@ export default function reducer(
       let newState2 = { ...currentState };
       newState2.newGame = true;
       return newState2;
+      break;
+    case actionTypes.NEW_GAME:
+      let newState3 = { ...currentState };
+      newState3.nrMoves = 0;
+      newState3.nrPairs = 0;
+      newState3.tiles = Array(30).fill(TileState.CLOSED);
+      newState3.finished = false;
+
+      return newState3;
       break;
     default:
       return currentState;
