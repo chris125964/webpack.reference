@@ -39,48 +39,46 @@ export const MemTile = ({
 
   let tileCharacter = getTileState(loop);
 
-  const tt = useSelector((state: RootState) => state.tiles);
-
   const changeColor =
     (loop: number, nr: number, dispatch: (action: MemoryAction) => void) =>
     () => {
       click(loop, nr, dispatch);
     };
 
-  // console.log(`MemTile(loop: ${loop}, nr: ${nr}): ${classStyle}`);
   const renderButton = (tileState: TileState) => {
     const testid = `button.${nr}.${index}`;
-    let butt;
     let style: string;
-    if (tileState === TileState.OPEN) {
-      style = open;
-      butt = (
-        <button
-          key={nr}
-          data-testid={testid}
-          className={style}
-          onClick={changeColor(loop, nr, dispatch)}
-        >
-          <TileContent nr={`${nr}`} />
-        </button>
-      );
-    } else if (tileState === TileState.CLOSED) {
-      style = closed;
-      butt = (
-        <button
-          key={nr}
-          data-testid={testid}
-          className={style}
-          onClick={changeColor(loop, nr, dispatch)}
-        >
-          {content}
-        </button>
-      );
-    } else {
-      style = solved;
-      butt = <button key={nr} data-testid={testid} className={style}></button>;
+    let clickFunc = undefined;
+    let buttonContent;
+    switch (tileState) {
+      case TileState.OPEN:
+        style = open;
+        clickFunc = changeColor(loop, nr, dispatch);
+        buttonContent = <TileContent nr={`${nr}`} />;
+        break;
+      case TileState.CLOSED:
+        style = closed;
+        clickFunc = changeColor(loop, nr, dispatch);
+        buttonContent = content;
+        break;
+      case TileState.SOLVED:
+        style = solved;
+        buttonContent = <TileContent nr={`${nr}`} />;
+        break;
+      default:
+        break;
     }
-    return butt;
+
+    return (
+      <button
+        key={nr}
+        data-testid={testid}
+        className={style}
+        onClick={clickFunc}
+      >
+        {buttonContent}
+      </button>
+    );
   };
 
   return renderButton(tileCharacter);

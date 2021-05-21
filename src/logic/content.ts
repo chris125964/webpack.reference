@@ -21,7 +21,7 @@ export class Content {
   createTileContent = () => {
     //
     let arr = new Array<MemContent>();
-    for (let loop = 0; loop < this.size; loop += 1) {
+    for (let loop = 1; loop <= this.size; loop += 1) {
       arr.push({ nr: loop, index: 1 });
       arr.push({ nr: loop, index: 2 });
     }

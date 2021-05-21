@@ -29,9 +29,6 @@ export const MemGrid = ({ content, onNewGame }: TGridProps) => {
 
   const finished = useSelector((state: RootState) => state.finished);
   const newGame = useSelector((state: RootState) => state.newGame);
-  // if (finished) {
-  //     setShowModal(true);
-  // }
 
   const renderTile = (index: number, content: MemContent) => {
     return (
@@ -55,8 +52,6 @@ export const MemGrid = ({ content, onNewGame }: TGridProps) => {
     return arr.map((content, index) => renderTile(index, content));
   };
 
-  // const openModal = () => setShowModal(true);
-
   const closeModal = () => {
     setShowModal(false);
     finishGame(dispatch);
@@ -65,7 +60,6 @@ export const MemGrid = ({ content, onNewGame }: TGridProps) => {
   return (
     <div>
       <Modal show={finished && !newGame} onClose={closeModal}></Modal>
-      {/* <button onClick={openModal}>Modal</button> */}
       <MemInfo onNewGame={onNewGame} />
       <div className="parent">{renderTiles()}</div>
     </div>
