@@ -22,6 +22,11 @@ export const MemInfo = ({ onNewGame }: MemInfoProps) => {
   };
 
   const nrClicksElement = <div>Anzahl der Clicks: {nrMoves}</div>;
+  const viewport = (
+    <div>
+      w x h: {window.innerWidth} x {window.innerHeight}
+    </div>
+  );
   const newGameElement = (
     <button data-testid="MemInfo.new-game" onClick={onNewGame2}>
       Neues Spiel
@@ -35,6 +40,7 @@ export const MemInfo = ({ onNewGame }: MemInfoProps) => {
   return (
     <div className="info">
       {nrClicksElement}
+      {viewport}
       {newGame2(finished)}
     </div>
   );
