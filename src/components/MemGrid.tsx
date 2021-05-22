@@ -37,6 +37,7 @@ export const MemGrid = ({ content, onNewGame }: TGridProps) => {
         key={content.index * 100 + content.nr}
         nr={content.nr}
         index={content.index}
+        indexx={content.indexx}
         content={content.nr.toString()}
         click={clickTile}
         dispatch={dispatch}

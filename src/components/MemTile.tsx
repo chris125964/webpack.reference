@@ -16,6 +16,7 @@ interface MemTileProps {
   nr: number;
   content: string;
   index: number;
+  indexx: number;
   click: (
     index: number,
     nr: number,
@@ -29,6 +30,7 @@ export const MemTile = ({
   nr,
   content,
   index,
+  indexx,
   click,
   dispatch,
 }: MemTileProps) => {
@@ -46,7 +48,7 @@ export const MemTile = ({
     };
 
   const renderButton = (tileState: TileState) => {
-    const testid = `button.${nr}.${index}`;
+    const testid = `button.${indexx}.${index}`;
     let style: string;
     let clickFunc = undefined;
     let buttonContent;

@@ -1,6 +1,7 @@
 export interface MemContent {
   nr: number;
   index: number;
+  indexx: number;
 }
 
 /**
@@ -18,14 +19,38 @@ export class Content {
     this.singleContent = new Array<MemContent>();
   }
 
+  /**
+   * wählt aus einem Feld von Zahlen zwischen 0 und _arraySize_ _x_ verschiedene
+   * Zahlen aus, verdoppelt diese und mischt sie danach.
+   * Dies ist die Basis für ein Memory.\
+   * \
+   * __Beispiele__:
+   * - createXFromY(2, 5) liefert z.B. [ 0, 4, 4, 0]\
+   * - createXFromY(3, 10) liefert z.B. [ 1, 7, 2, 7, 1, 2]
+   *
+   * @param {number} x Anzahl von Zahlen, die zufällig ausgewählt werden sollen
+   * @param {number} arraySize Größe des Felds, aus dem die zufälligen Zahlen ausgewählt werden sollen
+   * @returns Feld mit 2 * _x_ Elementen des Datentyps _MemContent_
+   * @memberof Content
+   */
+  createXFromY = (x: number, arraySize: number): MemContent[] => {
+    let initialArray = new Array<MemContent>();
+    let pairArray = new Array<MemContent>();
+    for (let loop = 0; loop < arraySize; loop += 1) {
+      initialArray.push({ nr: loop, index: 0, indexx: 0 });
+    }
+    let subsetArray = this.shuffleArray(initialArray);
+    for (let loop = 0; loop < x; loop += 1) {
+      pairArray.push({ nr: subsetArray[loop].nr, index: 1, indexx: loop });
+      pairArray.push({ nr: subsetArray[loop].nr, index: 2, indexx: loop });
+    }
+    let subsetPairArray = this.shuffleArray(pairArray);
+    return subsetPairArray;
+  };
+
   createTileContent = () => {
     //
-    let arr = new Array<MemContent>();
-    for (let loop = 1; loop <= this.size; loop += 1) {
-      arr.push({ nr: loop, index: 1 });
-      arr.push({ nr: loop, index: 2 });
-    }
-    this.singleContent = this.shuffleArray(arr);
+    this.singleContent = this.createXFromY(15, 49);
   };
 
   /** "mischt" ein Array mit Zahlen durch. Der Algorithmus ist geklaut:
