@@ -61,7 +61,7 @@ export const MemTile = ({
       case TileState.CLOSED:
         style = closed;
         clickFunc = changeColor(loop, nr, dispatch);
-        buttonContent = content;
+        buttonContent = <></>;
         break;
       case TileState.SOLVED:
         style = solved;

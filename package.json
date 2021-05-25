@@ -14,7 +14,7 @@
     "build:analyze": "npm run build -- --env addon=bundleanalyze",
     "mocha": "mocha",
     "test": "testcafe chrome:headless test/test1.spec.ts",
-    "test:chrome": "testcafe chrome test/test1.spec.ts",
+    "test:chrome": "testcafe chrome test/testcafe.spec.ts",
     "doc": "typedoc --options typedoc.json",
     "el": "electron .",
     "build2": "electron-builder build --win --publish never",

@@ -33,10 +33,13 @@ export class Content {
    * @returns Feld mit 2 * _x_ Elementen des Datentyps _MemContent_
    * @memberof Content
    */
-  createXFromY = (x: number, arraySize: number): MemContent[] => {
+  createXFromY = (x: number): MemContent[] => {
+    if (x > this.size) {
+      throw `x (${x}) must not be greater than this.size (${this.size})`;
+    }
     let initialArray = new Array<MemContent>();
     let pairArray = new Array<MemContent>();
-    for (let loop = 0; loop < arraySize; loop += 1) {
+    for (let loop = 0; loop < this.size; loop += 1) {
       initialArray.push({ nr: loop, index: 0, indexx: 0 });
     }
     let subsetArray = this.shuffleArray(initialArray);
@@ -50,7 +53,7 @@ export class Content {
 
   createTileContent = () => {
     //
-    this.singleContent = this.createXFromY(15, 49);
+    this.singleContent = this.createXFromY(15);
   };
 
   /** "mischt" ein Array mit Zahlen durch. Der Algorithmus ist geklaut:
